@@ -15,7 +15,7 @@ class Config:
     DB_ECHO: bool = True
     DEBUG: bool = False
     TEST_MODE: bool = False
-    DB_URL: str = environ.get("DB_URL", "mysql+pymysql://travis@localhost/notification_api?charset=utf8mb4")
+    DB_URL: str = environ.get("DB_URL", "mysql+pymysql://root:bong2@localhost/notification_api?charset=utf8mb4")
 
 
 @dataclass
@@ -23,17 +23,19 @@ class LocalConfig(Config):
     TRUSTED_HOSTS = ["*"]
     ALLOW_SITE = ["*"]
     DEBUG: bool = True
+    PROJ_RELOAD: bool = True
 
 
 @dataclass
 class ProdConfig(Config):
     TRUSTED_HOSTS = ["*"]
     ALLOW_SITE = ["*"]
+    PROJ_RELOAD: bool = False
 
 
 @dataclass
 class TestConfig(Config):
-    DB_URL: str = "mysql+pymysql://travis@localhost/notification_test?charset=utf8mb4"
+    DB_URL: str = "mysql+pymysql://root:bong2@localhost/notification_test?charset=utf8mb4"
     TRUSTED_HOSTS = ["*"]
     ALLOW_SITE = ["*"]
     TEST_MODE: bool = True

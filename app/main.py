@@ -1,8 +1,10 @@
-from typing import Optional
-from dataclasses import asdict
 import uvicorn
 from fastapi import FastAPI
+from typing import Optional
+from dataclasses import asdict
+from app.database.conn import db
 from app.common.config import conf
+from app.routes import index
 
 
 def create_app():
@@ -11,14 +13,15 @@ def create_app():
     :return:
     """
     c = conf()
-    conf_dict = asdict(c)
     app = FastAPI()
+    conf_dict = asdict(c)
+    db.init_app(app, **conf_dict)
 
-    # 데이터베이스 이니셜라이즈
+    # DATABASE Initialize
 
-    # 레디스 이니셜라이즈
+    # Redis Initialize
 
-    # 미들웨어 정의
+    # Middleware 정의
 
     # 라우터 정의
     return app
