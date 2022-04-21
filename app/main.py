@@ -33,9 +33,9 @@ if __name__ == '__main__':
     uvicorn.run("main:app", host='0.0.0.0', reload=conf().PROJ_RELOAD)
 
 
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
+# @app.get("/")
+# async def read_root():
+#     return {"Hello": "World"}
 
 
 @app.get("/items/{item_id}")
